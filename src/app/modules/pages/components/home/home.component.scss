@@ -1,0 +1,86 @@
+.wrapper {
+  text-align: center;
+}
+
+.panel {
+  background-color: ghostwhite;
+  border-radius: 14px;
+  width:50%;
+  padding: 2rem;
+  margin: 0 auto;
+
+  .slider {
+    width: 90%;
+  }
+
+  .slider_input {
+    mat-form-field {
+      width: 10%;
+    }
+  }
+
+  .row {
+    display: table;
+  }
+
+  .select
+  {
+    display: table-cell;
+    width: 50px;
+
+    mat-form-field {
+      width: 50px;
+
+      mat-select {
+        background-size: 24px 24px;
+        background-repeat: no-repeat;
+      }
+    }
+  }
+
+  .cell {
+    display: table-cell;
+    padding: 0;
+  }
+
+  .seed {
+    display: flex;
+    width: 100%;
+
+    mat-form-field {
+      margin-right: 6px;
+      width: 100%;
+    }
+
+    .shuffle_button{
+      height: 40px;
+    }
+  }
+}
+
+.flag-icon {
+  background-color: gainsboro;
+}
+
+.flag-icon-ru {
+  background: url('https://flagicons.lipis.dev/flags/4x3/ru.svg');
+}
+
+.flag-icon-us {
+  background: url('https://flagicons.lipis.dev/flags/4x3/us.svg');
+}
+.flag-icon-pl {
+  background: url('https://flagicons.lipis.dev/flags/4x3/pl.svg');
+}
+
+::ng-deep .mat-slider-wrapper {
+
+  .mat-slider-thumb-container {
+    .mat-slider-thumb-label {
+      width: 40px;
+      height: 40px;
+      top: -62px;
+      right: -25px;
+    }
+  }
+}
