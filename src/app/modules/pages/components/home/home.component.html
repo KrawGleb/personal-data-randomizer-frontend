@@ -65,5 +65,28 @@
       </div>
     </div>
   </div>
-  <div class="table"></div>
+  <div class="table">
+    <app-scroll-container
+      [more]="true"
+      [scrollOffset]="2500"
+      [scrollDelay]="1000"
+      (scrolled)="handleScroll($event)"
+    >
+      <mat-table [dataSource]="dataSource">
+        <ng-container
+          *ngFor="let column of displayedColumns"
+          [matColumnDef]="column"
+        >
+          <mat-header-cell *matHeaderCellDef>
+            {{ column | titlecase }}
+          </mat-header-cell>
+
+          <mat-cell *matCellDef="let item"> {{ item[column] }} </mat-cell>
+        </ng-container>
+
+        <mat-header-row *matHeaderRowDef="displayedColumns; sticky: true"></mat-header-row>
+        <mat-row *matRowDef="let row; columns: displayedColumns"></mat-row>
+      </mat-table>
+    </app-scroll-container>
+  </div>
 </div>

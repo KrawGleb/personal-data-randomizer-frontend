@@ -2,20 +2,17 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { HomeComponent } from './components/home/home.component';
+import { ScrollContainerComponent } from './components/scroll-container/scroll-container.component';
 
 import { MatSliderModule } from '@angular/material/slider';
 import { MatInputModule } from '@angular/material/input';
 import { MatSelectModule } from '@angular/material/select';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
-import { ScrollContainerComponent } from './components/scroll-container/scroll-container.component';
-
+import { MatTableModule } from '@angular/material/table';
 
 @NgModule({
-  declarations: [
-    HomeComponent,
-    ScrollContainerComponent
-  ],
+  declarations: [HomeComponent, ScrollContainerComponent],
   imports: [
     CommonModule,
     FormsModule,
@@ -23,7 +20,8 @@ import { ScrollContainerComponent } from './components/scroll-container/scroll-c
     MatInputModule,
     MatSelectModule,
     MatButtonModule,
-    MatIconModule
-  ]
+    MatIconModule,
+    MatTableModule,
+  ],
 })
-export class PagesModule { }
+export class PagesModule {}
