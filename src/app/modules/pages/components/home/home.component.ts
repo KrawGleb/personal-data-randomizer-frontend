@@ -1,6 +1,10 @@
 import { Component, OnInit } from '@angular/core';
+import { FormControl, FormGroup } from '@angular/forms';
 import { MatTableDataSource } from '@angular/material/table';
 import * as _ from 'lodash';
+import { tap } from 'rxjs';
+import { getRandomNumberInRange } from 'src/app/modules/helpers/random.helpers';
+import { MathConstants } from 'src/app/modules/models/constants/math.constants';
 import { PersonalData } from 'src/app/modules/models/personal-data.model';
 
 const TEMP_DATA: PersonalData[] = [
@@ -88,6 +92,12 @@ export class HomeComponent implements OnInit {
   public selectedCountry: string = 'ru';
   public countries: string[] = ['ru', 'us', 'pl'];
 
+  public optionsFormGroup = new FormGroup({
+    errors: new FormControl(0),
+    country: new FormControl(this.selectedCountry),
+    seed: new FormControl(0),
+  });
+
   public dataSource!: MatTableDataSource<PersonalData>;
   public displayedColumns: string[] = [
     'index',
@@ -98,6 +108,16 @@ export class HomeComponent implements OnInit {
   ];
 
   ngOnInit(): void {
+    this.optionsFormGroup.valueChanges
+      .pipe(
+        tap(() => {
+          // ToDo: regenerate data
+          console.log(this.optionsFormGroup.value);
+        })
+      )
+      .subscribe();
+
+    this.randomizeSeed();
     this.getData();
   }
 
@@ -105,9 +125,21 @@ export class HomeComponent implements OnInit {
     scrolled ? this.getData() : _.noop();
   }
 
+  public randomizeSeed() {
+    const seed = getRandomNumberInRange(
+      MathConstants.IntMinValue,
+      MathConstants.IntMaxValue
+    );
+
+    this.optionsFormGroup.setValue({
+      country: this.optionsFormGroup.value.country ?? null,
+      errors: this.optionsFormGroup.value.errors ?? null,
+      seed: seed,
+    });
+  }
+
   private getData() {
     this.page += 1;
-    console.log(this.page);
     const data: PersonalData[] = this.dataSource
       ? [...this.dataSource.data, ...TEMP_DATA]
       : TEMP_DATA;

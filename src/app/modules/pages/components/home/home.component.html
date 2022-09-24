@@ -1,20 +1,27 @@
 <div class="wrapper mt-4">
-  <div class="panel">
+  <form class="panel" [formGroup]="optionsFormGroup">
     <div class="w-100">
       <div class="slider_input">
         <mat-form-field>
           <mat-label>Errors</mat-label>
-          <input matInput type="text" [(ngModel)]="errorsCount" />
+          <input
+            matInput
+            type="number"
+            formControlName="errors"
+            [value]="optionsFormGroup.value.errors"
+            max="1000"
+          />
         </mat-form-field>
 
         <mat-slider
           thumbLabel
           min="0"
-          max="1000"
+          max="10"
           step="0.01"
           class="slider"
           aria-label="unit(s)"
-          [(ngModel)]="errorsCount"
+          formControlName="errors"
+          [value]="optionsFormGroup.value.errors"
         ></mat-slider>
       </div>
     </div>
@@ -23,8 +30,8 @@
       <div class="select">
         <mat-form-field>
           <mat-select
-            [(value)]="selectedCountry"
-            [ngClass]="'flag-icon-' + selectedCountry"
+            formControlName="country"
+            [ngClass]="'flag-icon-' + optionsFormGroup.value.country"
           >
             <mat-option value="ru" class="flag-icon">
               <img
@@ -55,17 +62,23 @@
         <div class="seed">
           <mat-form-field class="mr-2">
             <mat-label>Seed</mat-label>
-            <input matInput placeholder="Seed" />
+            <input matInput placeholder="Seed" formControlName="seed" />
           </mat-form-field>
 
-          <button mat-raised-button color="primary" class="ml-2 shuffle_button">
+          <button
+            mat-raised-button
+            color="primary"
+            class="ml-2 shuffle_button"
+            (click)="randomizeSeed()"
+          >
             <mat-icon>shuffle</mat-icon>
           </button>
         </div>
       </div>
     </div>
-  </div>
-  <div class="table">
+  </form>
+
+  <div class="table scroll">
     <app-scroll-container
       [more]="true"
       [scrollOffset]="2500"
@@ -84,7 +97,9 @@
           <mat-cell *matCellDef="let item"> {{ item[column] }} </mat-cell>
         </ng-container>
 
-        <mat-header-row *matHeaderRowDef="displayedColumns; sticky: true"></mat-header-row>
+        <mat-header-row
+          *matHeaderRowDef="displayedColumns; sticky: true"
+        ></mat-header-row>
         <mat-row *matRowDef="let row; columns: displayedColumns"></mat-row>
       </mat-table>
     </app-scroll-container>

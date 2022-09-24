@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HomeComponent } from './components/home/home.component';
 import { ScrollContainerComponent } from './components/scroll-container/scroll-container.component';
 
@@ -16,6 +16,7 @@ import { MatTableModule } from '@angular/material/table';
   imports: [
     CommonModule,
     FormsModule,
+    ReactiveFormsModule,
     MatSliderModule,
     MatInputModule,
     MatSelectModule,
