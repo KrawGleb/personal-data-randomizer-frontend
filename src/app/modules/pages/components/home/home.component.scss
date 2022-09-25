@@ -72,7 +72,12 @@
   .mat-header-row {
     background-color: ghostwhite;
   }
+
+  .mat-column-index {
+    width: 32px;
+  }
 }
+
 
 .flag-icon {
   background-color: gainsboro;
@@ -99,4 +104,12 @@
       right: -25px;
     }
   }
+}
+
+.mat-column-index {
+  width: 32px
+}
+
+.mat-column-address {
+  padding: 1rem;
 }
