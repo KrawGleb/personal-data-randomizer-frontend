@@ -12,7 +12,7 @@ export class PersonalDataService {
   constructor(private readonly httpClient: HttpClient) {}
 
   public getData(options: RandomOptions, page: number) : Observable<PersonalData[]> {
-    options.seed += page;
+    options.seed = +options.seed + page;
 
     return this.httpClient.post<PersonalData[]>(HttpConstants.BaseApiUrl + '/data', options);
   }
