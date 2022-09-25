@@ -7,6 +7,7 @@ import { getRandomNumberInRange } from 'src/app/modules/helpers/random.helpers';
 import { MathConstants } from 'src/app/modules/models/constants/math.constants';
 import { PersonalData } from 'src/app/modules/models/personal-data.model';
 import { RandomOptions } from 'src/app/modules/models/random-options.model';
+import { ExportService } from 'src/app/modules/services/export.service';
 import { PersonalDataService } from 'src/app/modules/services/personal-data.service';
 
 @Component({
@@ -37,7 +38,9 @@ export class HomeComponent implements OnInit {
     'phone',
   ];
 
-  constructor(private readonly personalDataService: PersonalDataService) {}
+  constructor(
+    private readonly personalDataService: PersonalDataService,
+    private readonly exportService: ExportService) {}
 
   ngOnInit(): void {
     this.optionsFormGroup.valueChanges
@@ -69,7 +72,7 @@ export class HomeComponent implements OnInit {
   }
 
   public exportData() {
-    console.log(this.dataSource.data);
+    this.exportService.exportData(this.dataSource.data);
   }
 
   private getRandomOptions() {
